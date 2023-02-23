@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Show tooltips on hover</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+<body>
+
+
+<div id='map'></div>
+
+<script>
+L.mapbox.accessToken = 'pk.eyJ1IjoiYmVhdWRlbGFpcmUiLCJhIjoiY2xkc2t3eHh6MHRjdjNvcGZuYWpkMXE0bSJ9.5TR5KGuf2vyblYY4bgkNFQ';
+var map = L.mapbox.map('map', 'landplanner.f505d476')
+  .setView([39.12367, -76.81229], 9);
+
+var myLayer = L.mapbox.featureLayer().addTo(map);
+
+var geojson = {
+    type: 'FeatureCollection',
+    features: [{
+        type: 'Feature',
+        properties: {
+            title: 'Washington, D.C.',
+            'marker-color': '#f86767',
+            'marker-size': 'large',
+            'marker-symbol': 'star',
+            url: 'http://en.wikipedia.org/wiki/Washington,_D.C.',
+            description: '<img width="250px" src="https://www.whitehouse.gov/sites/default/files/image/whitehouse_historypg.jpg"/>'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-77.03201, 38.90065]
+        }
+    },
+    {
+        type: 'Feature',
+        properties: {
+            title: 'Baltimore, MD',
+            'marker-color': '#7ec9b1',
+            'marker-size': 'large',
+            'marker-symbol': 'star',
+            url: 'http://en.wikipedia.org/wiki/Baltimore',
+            description: '<img width="250px" src="http://www.amillionlives.net/wp-content/uploads/2011/07/Baltimore-Attractions.jpg"/>'
+        },
+        geometry: {
+            type: 'Point',
+            coordinates: [-76.60767, 39.28755]
+        }
+    }]
+};
+
+myLayer.setGeoJSON(geojson);
+myLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+myLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+});
+</script>
+
+
+</body>
+</html>

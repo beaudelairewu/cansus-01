@@ -1,0 +1,18 @@
+// Override Bootstrap Variables.
+// For example: $grid-gutter-width-base:  20px;
+// For example: $grid-gutter-width: 20px;
+
+
+//Bootstrap
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap-grid";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+
+$theme-colors: (
+  "success": #645CBB,
+  "primary": #FF8B13, 
+    "danger": #DC3545
+);
+   
+@import "bootstrap";
